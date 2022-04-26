@@ -23,11 +23,18 @@ export const QuestList = class view extends Component {
                 <Collapse isOpen={show}>
                     {
                         questList.map((quest) => {
-                            console.log(quest);
-                            return (
-                                <li style={{ listStyleType: "none", margin: "5px" }}>
-                                    <QuestCard quest={questData[idMap.get(quest)]}></QuestCard>
-                                </li>)
+                            const id = idMap.get(quest);
+                            if (id) {
+                                const questInfo = questData[id];
+                                if(questInfo) {
+                                    return (
+                                        <li style={{ listStyleType: "none", margin: "5px" }}>
+                                            <QuestCard quest={questData[idMap.get(quest)]}></QuestCard>
+                                        </li>
+                                    )
+                                }
+                            }
+                            return ""
                         })
                     }
                 </Collapse>

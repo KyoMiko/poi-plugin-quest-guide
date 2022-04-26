@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import questData from './quests-scn.json'
 import { questMap } from './questHelper.es';
 import { QuestList } from './QuestList.es';
-import * as fs from 'fs';
 export const windowMode = false;
 
 export const reactClass = connect(state => ({
@@ -45,9 +44,11 @@ export const reactClass = connect(state => ({
         let acceptableSet = new Set();
         let finishedSet = new Set();
         for (const iterator of stack) {
-            questMap.get(iterator).forEach(value => {
-                stack.add(value)
-            });
+            if(questMap.get(iterator)) {
+                questMap.get(iterator).forEach(value => {
+                    stack.add(value)
+                });
+            }
             if (questnow.includes(iterator) && result.has(iterator)) {
                 acceptableSet.add(iterator);
                 result.delete(iterator);
@@ -68,7 +69,7 @@ export const reactClass = connect(state => ({
         const { show, error } = this.state;
         const style = error ? { color: "red" }: { color: "red",display: "none" };
         return (
-            <div>
+            <div style={{overflowY: "scroll"}}>
                 <InputGroup style={{ height: "30px" }} onChange={(event) => this.setState({ target: event.target.value })} placeholder="输入任务编码(查找前点击任务刷新已有任务，需配合任务信息2一起使用)" ></InputGroup>
                 <Button onClick={this.getGuide}>
                     查找
