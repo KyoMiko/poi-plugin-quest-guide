@@ -1,6 +1,6 @@
 {
   "name": "poi-plugin-quest-guide",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "main.js",
   "description": "a quest guide plugin",
   "author": {
