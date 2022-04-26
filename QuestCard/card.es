@@ -15,7 +15,6 @@ export const QuestCard = forwardRef(
     },
     ref
   ) => {
-    console.log(quest)
     const { code, name, desc, memo, memo2 } = quest
     const headIcon = imgObj[code[0]];
 
